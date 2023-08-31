@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
+const users = require("./routes/user.route");
+const posts = require("./routes/post.route");
+
 app.use(cors());
 // Since mongoose's Promise is deprecated, we override it with Node's Promise
 mongoose.Promise = global.Promise;
@@ -26,9 +29,11 @@ mongoose
   .then(() => console.log("Database connected successfully"))
   .catch((err) => console.log(err));
 
-app.use("/", (req, res) => {
-  res.send("Hello Ajay here");
-});
+// app.use("/", (req, res) => {
+//   res.send("Hello Ajay here");
+// });
+app.use("/api/user", users);
+app.use("/api/post", posts);
 
 app.use((err, req, res, next) => {
   console.log(err);
