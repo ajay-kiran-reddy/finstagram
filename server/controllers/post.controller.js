@@ -109,13 +109,16 @@ const handleDeleteComment = (req, res) => {
 };
 
 const handleLikeComment = (req, res) => {
-  Post.findByIdAndUpdate(
-    { _id: req.params.id, "comments._id": req.body.comments._id },
-    { $set: { "comments.$.likes": req.body.comments.likedBy } },
+  console.log("inside controller");
+  Post.updateOne(
+    { _id: req.params.id, "comments._id": req.body._id },
+    { $set: { "comments.$": req.body } },
     { new: true }
   )
     .then((result) =>
-      res.status(200).json({ message: "Like the comment successfully", result })
+      res
+        .status(200)
+        .json({ message: "Liked the comment successfully", result })
     )
     .catch((error) =>
       res.status(500).json({ message: "Failed to like the comment", error })
@@ -125,7 +128,7 @@ const handleLikeComment = (req, res) => {
 const handleUnLikeComment = (req, res) => {
   Post.updateOne(
     { _id: req.params.id, "comments._id": req.body.comments._id },
-    { $pull: { "comments.$.likes": req.body.comments.likedBy } }
+    { $pull: { "comments.$": req.body } }
   )
     .then((result) =>
       res

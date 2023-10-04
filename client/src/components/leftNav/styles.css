@@ -1,0 +1,23 @@
+.menu-item {
+  display: flex;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.menu-item.active {
+  display: flex;
+  cursor: pointer;
+  padding: 15px;
+  background-color: aliceblue;
+  border-radius: 0.5rem;
+}
+
+.menu-icon {
+  margin-top: 10px;
+  margin-left: 2rem;
+}
+
+.menu-text {
+  margin-left: 1rem !important;
+  margin-top: 0 !important;
+}

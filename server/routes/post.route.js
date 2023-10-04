@@ -13,6 +13,15 @@ const {
 } = require("../controllers/post.controller");
 const route = express.Router();
 
+route.put("/likeComment/:id", (req, res) => {
+  console.log("inside router");
+  return handleLikeComment, (req, res);
+});
+
+route.put("/unLikeComment/:id", (req, res) => {
+  return handleUnLikeComment(req, res);
+});
+
 route.post("/", (req, res) => {
   return createPost(req, res);
 });
@@ -43,14 +52,6 @@ route.put("/updateComment/:id", (req, res) => {
 
 route.put("/deleteComment/:id", (req, res) => {
   return handleDeleteComment(req, res);
-});
-
-route.put("/likeComment/:id", (req, res) => {
-  return handleLikeComment(req, res);
-});
-
-route.put("/unLikeComment/:id", (req, res) => {
-  return handleUnLikeComment(req, res);
 });
 
 module.exports = route;

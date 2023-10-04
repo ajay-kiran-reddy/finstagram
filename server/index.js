@@ -29,9 +29,6 @@ mongoose
   .then(() => console.log("Database connected successfully"))
   .catch((err) => console.log(err));
 
-// app.use("/", (req, res) => {
-//   res.send("Hello Ajay here");
-// });
 app.use("/api/user", users);
 app.use("/api/post", posts);
 
